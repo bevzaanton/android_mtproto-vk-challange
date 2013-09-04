@@ -163,7 +163,6 @@ public class TCPLink extends Service {
                     DataOutputStream dos = new DataOutputStream(mySock.getOutputStream());
                     dos.write(toServer);
                     dos.flush();
-                    //out.println(message);
                 } catch (Exception e) {
                     e.printStackTrace();
                     while (running.getStatus().equals(AsyncTask.Status.RUNNING)) ;
@@ -172,13 +171,8 @@ public class TCPLink extends Service {
                 // Если поток закончил принимать сообщения - это означает,
                 // что соединение разорвано (других причин нет).
                 // Это означает, что нужно закрыть сокет
-                // и открыть его опять в бесконечном цикле (см. while(true) выше)
-                try {
-                    //mySock.close();
-                } catch (Exception e) {
-                }
+                // и открыть его опять в бесконечном цикле
                 return 1;
-                // }
             } catch (Exception e) {
                 e.printStackTrace();
                 return -1;
